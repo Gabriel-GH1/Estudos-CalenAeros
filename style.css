@@ -1,0 +1,293 @@
+* {
+    /* Seleciona todos os elementos da página */
+    box-sizing: border-box;
+    /* Faz com que padding e border sejam incluídos na largura e altura total dos elementos */
+    margin: 0;
+    /* Remove margens padrão de todos os elementos */
+    padding: 0;
+    /* Remove preenchimento padrão de todos os elementos */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Define a fonte padrão para todos os elementos */
+}
+
+body {
+    /* Estilos para o corpo da página */
+    background-color: #f5f5f5;
+    /* Cor de fundo cinza claro */
+    padding: 20px;
+    /* Espaçamento interno de 20px */
+    color: #333;
+    /* Cor do texto escuro */
+}
+
+.container {
+    /* Container principal que envolve todo o conteúdo */
+    max-width: 1200px;
+    /* Largura máxima de 1200px */
+    margin: 0 auto;
+    /* Centraliza o container na página */
+    background: white;
+    /* Fundo branco */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    overflow: hidden;
+    /* Esconde qualquer conteúdo que ultrapasse as bordas */
+}
+
+header {
+    /* Cabeçalho da página */
+    background: #005288;
+    /* Cor de fundo azul escuro */
+    color: white;
+    /* Texto branco */
+    padding: 20px;
+    /* Espaçamento interno */
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+h1 {
+    /* Estilo para o título principal */
+    margin-bottom: 10px;
+    /* Margem inferior de 10px */
+}
+
+.tabs {
+    /* Container das abas */
+    display: flex;
+    /* Usa flexbox para alinhar os botões horizontalmente */
+    background: #e0e0e0;
+    /* Cor de fundo cinza */
+    border-bottom: 1px solid #ccc;
+    /* Borda inferior cinza */
+}
+
+.tab-button {
+    /* Estilo dos botões das abas */
+    padding: 12px 20px;
+    /* Espaçamento interno */
+    background: #e0e0e0;
+    /* Cor de fundo cinza */
+    border: none;
+    /* Remove borda padrão */
+    cursor: pointer;
+    /* Muda o cursor para pointer ao passar o mouse */
+    font-weight: 500;
+    /* Peso da fonte */
+    transition: background 0.3s;
+    /* Transição suave para mudanças de cor de fundo */
+}
+
+.tab-button:hover {
+    /* Estilo quando o mouse passa sobre o botão */
+    background: #d0d0d0;
+    /* Cor de fundo um pouco mais escura */
+}
+
+.tab-button.active {
+    /* Estilo do botão ativo */
+    background: white;
+    /* Fundo branco */
+    border-bottom: 3px solid #005288;
+    /* Borda inferior azul */
+    font-weight: bold;
+    /* Texto em negrito */
+}
+
+.tab-content {
+    /* Conteúdo das abas */
+    display: none;
+    /* Oculta por padrão */
+    padding: 20px;
+    /* Espaçamento interno */
+}
+
+.tab-content.active {
+    /* Conteúdo da aba ativa */
+    display: block;
+    /* Torna visível */
+}
+
+.calendar-container {
+    /* Container do calendário */
+    overflow-x: auto;
+    /* Adiciona rolagem horizontal se necessário */
+}
+
+.year-title {
+    /* Título do ano no calendário */
+    text-align: center;
+    /* Centraliza o texto */
+    margin: 15px 0;
+    /* Margem superior e inferior */
+    color: #005288;
+    /* Cor azul escuro */
+}
+
+.months-grid {
+    /* Grade dos meses */
+    display: grid;
+    /* Usa CSS Grid para layout */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 colunas de tamanho igual */
+    gap: 20px;
+    /* Espaço entre os meses */
+}
+
+@media (max-width: 900px) {
+    /* Estilos aplicados quando a largura da tela é 900px ou menos */
+    .months-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 colunas em telas médias */
+    }
+}
+
+@media (max-width: 600px) {
+    /* Estilos aplicados quando a largura da tela é 600px ou menos */
+    .months-grid {
+        grid-template-columns: 1fr;
+        /* 1 coluna em telas pequenas */
+    }
+}
+
+.month {
+    /* Container de cada mês */
+    background: white;
+    /* Fundo branco */
+    border: 1px solid #ddd;
+    /* Borda cinza clara */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    padding: 10px;
+    /* Espaçamento interno */
+}
+
+.month-name {
+    /* Nome do mês */
+    text-align: center;
+    /* Centraliza o texto */
+    font-weight: bold;
+    /* Texto em negrito */
+    margin-bottom: 10px;
+    /* Margem inferior */
+    padding-bottom: 5px;
+    /* Espaçamento inferior */
+    border-bottom: 1px solid #eee;
+    /* Borda inferior sutil */
+    color: #005288;
+    /* Cor azul escuro */
+}
+
+.weekdays {
+    /* Container dos dias da semana */
+    display: grid;
+    /* Usa CSS Grid */
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 colunas (um para cada dia da semana) */
+    text-align: center;
+    /* Centraliza o texto */
+    font-weight: bold;
+    /* Texto em negrito */
+    font-size: 12px;
+    /* Tamanho da fonte */
+    margin-bottom: 5px;
+    /* Margem inferior */
+}
+
+.days {
+    /* Container dos dias do mês */
+    display: grid;
+    /* Usa CSS Grid */
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 colunas (uma para cada dia da semana) */
+    gap: 2px;
+    /* Pequeno espaço entre os dias */
+}
+
+.day {
+    /* Estilo de cada dia */
+    text-align: center;
+    /* Centraliza o texto */
+    padding: 5px;
+    /* Espaçamento interno */
+    font-size: 12px;
+    /* Tamanho da fonte */
+    border-radius: 3px;
+    /* Bordas levemente arredondadas */
+}
+
+.day.empty {
+    /* Dias vazios (antes do primeiro dia do mês) */
+    background: transparent;
+    /* Fundo transparente */
+    border: none;
+    /* Sem borda */
+}
+
+.day.maintenance {
+    /* Dias de manutenção */
+    background-color: #ffeb3b;
+    /* Cor de fundo amarela */
+    font-weight: bold;
+    /* Texto em negrito */
+}
+
+.legend {
+    /* Container da legenda */
+    display: flex;
+    /* Usa flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    margin-top: 20px;
+    /* Margem superior */
+    padding: 10px;
+    /* Espaçamento interno */
+    background: #f9f9f9;
+    /* Cor de fundo cinza muito claro */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+}
+
+.legend-item {
+    /* Item da legenda */
+    display: flex;
+    /* Usa flexbox */
+    align-items: center;
+    /* Centraliza verticalmente */
+    margin: 0 15px;
+    /* Margem horizontal */
+}
+
+.color-box {
+    /* Caixa de cor da legenda */
+    width: 20px;
+    /* Largura */
+    height: 20px;
+    /* Altura */
+    margin-right: 5px;
+    /* Margem à direita */
+    border: 1px solid #ddd;
+    /* Borda cinza */
+}
+
+.maintenance-color {
+    /* Cor para período de manutenção */
+    background-color: #ffeb3b;
+    /* Amarelo */
+}
+
+footer {
+    /* Rodapé da página */
+    text-align: center;
+    /* Centraliza o texto */
+    padding: 20px;
+    /* Espaçamento interno */
+    margin-top: 20px;
+    /* Margem superior */
+    color: #666;
+    /* Cor do texto cinza */
+    font-size: 14px;
+    /* Tamanho da fonte */
+}

@@ -1,121 +1,134 @@
-<!DOCTYPE html>
-<!-- Declara o tipo de documento como HTML5 -->
-<html lang="pt-BR">
-<!-- Define o idioma da página como português do Brasil -->
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-BR"> <!-- Elemento raiz do documento com idioma português do Brasil -->
 <head>
-    <!-- Cabeçalho do documento - contém metadados e links para recursos externos -->
-    <meta charset="UTF-8">
-    <!-- Define a codificação de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Configura a viewport para responsividade em dispositivos móveis -->
-    <title>Calendário de Manutenção de Aeronaves</title>
-    <!-- Título da página que aparece na aba do navegador -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Link para o arquivo de estilos CSS -->
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a viewport para responsividade -->
+    <title>Calendário de Manutenção de Aeronaves</title> <!-- Título da página na aba do navegador -->
+    <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo de estilos CSS -->
 </head>
 <body>
-    <!-- Corpo do documento - conteúdo visível da página -->
+    <!-- Container principal que envolve todo o conteúdo -->
     <div class="container">
-        <!-- Container principal para agrupar todo o conteúdo -->
+        <!-- Cabeçalho da página -->
         <header>
-            <!-- Cabeçalho da página -->
-            <h1>Calendário de Manutenção de Aeronaves</h1>
-            <!-- Título principal -->
-            <p>Controle de Entrada e Saída das Aeronaves</p>
-            <!-- Subtítulo -->
+            <h1>Calendário de Manutenção de Aeronaves</h1> <!-- Título principal -->
+            <p>Controle de Entrada e Saída das Aeronaves</p> <!-- Subtítulo -->
         </header>
         
+        <!-- Container das abas de navegação -->
         <div class="tabs">
-            <!-- Container para as abas de seleção de aeronaves -->
-            <button class="tab-button" onclick="openTab('pp-fcf', event)">PP-FCF</button>
-            <!-- Botão da primeira aba (ativa por padrão) que chama a função openTab ao ser clicado -->
-            <button class="tab-button" onclick="openTab('pr-msz', event)">PR-MSZ</button>
-            <!-- Botão da segunda aba -->
-            <button class="tab-button" onclick="openTab('pp-emo', event)">PP-EMO</button>
-            <!-- Botão da terceira aba -->
-            <button class="tab-button" onclick="openTab('ps-ece', event)">PS-ECE</button>
-            <!-- Botão da quarta aba -->
+            <!-- Botão da aba para a aeronave PP-FCF -->
+            <button class="tab-button active" onclick="openTab('pp-fcf')" data-aircraft="pp-fcf">
+                PP-FCF <!-- Prefixo da aeronave -->
+                <div class="tab-tooltip">Clique para ver detalhes</div> <!-- Tooltip da aba -->
+            </button>
+            <!-- Botão da aba para a aeronave PR-MSZ -->
+            <button class="tab-button" onclick="openTab('pr-msz')" data-aircraft="pr-msz">
+                PR-MSZ
+                <div class="tab-tooltip">Clique para ver detalhes</div>
+            </button>
+            <!-- Botão da aba para a aeronave PP-EMO -->
+            <button class="tab-button" onclick="openTab('pp-emo')" data-aircraft="pp-emo">
+                PP-EMO
+                <div class="tab-tooltip">Clique para ver detalhes</div>
+            </button>
+            <!-- Botão da aba para a aeronave PS-ECE -->
+            <button class="tab-button" onclick="openTab('ps-ece')" data-aircraft="ps-ece">
+                PS-ECE
+                <div class="tab-tooltip">Clique para ver detalhes</div>
+            </button>
         </div>
         
+        <!-- Conteúdo da aba PP-FCF (ativa por padrão) -->
         <div id="pp-fcf" class="tab-content active">
-            <!-- Conteúdo da primeira aba (visível por padrão) -->
-            <h2 class="year-title">PP-FCF - Calendário 2025</h2>
-            <!-- Título da aeronave e ano -->
+            <h2 class="year-title">PP-FCF - Calendário 2025</h2> <!-- Título da aeronave e ano -->
+            <p class="aircraft-info" id="pp-fcf-info">Passe o mouse sobre os dias para mais informações</p> <!-- Informações da aeronave -->
+            <!-- Legenda do calendário -->
             <div class="legend">
-                <!-- Legenda para explicar as cores do calendário -->
                 <div class="legend-item">
-                    <div class="color-box maintenance-color"></div>
-                    <!-- Caixa colorida para representar o período de manutenção -->
-                    <span>Período de Manutenção</span>
-                    <!-- Texto explicativo -->
+                    <div class="color-box maintenance-color"></div> <!-- Caixa de cor para período de manutenção -->
+                    <span>Período de Manutenção</span> <!-- Texto da legenda -->
+                </div>
+                <div class="legend-item">
+                    <span></span> <!-- Item vazio para espaçamento -->
                 </div>
             </div>
+            <!-- Container do calendário -->
             <div class="calendar-container">
-                <!-- Container do calendário -->
                 <div class="months-grid" id="pp-fcf-calendar">
-                    <!-- Local onde o JavaScript irá inserir os meses do calendário -->
-                    <!-- JavaScript vai preencher isso -->
+                    <!-- Local onde o JavaScript irá inserir o calendário gerado -->
                 </div>
             </div>
         </div>
         
-        <!-- Estrutura repetida para as outras três aeronaves -->
+        <!-- Conteúdo da aba PR-MSZ -->
         <div id="pr-msz" class="tab-content">
-            <!-- Conteúdo da segunda aba (oculta por padrão) -->
             <h2 class="year-title">PR-MSZ - Calendário 2025</h2>
+            <p class="aircraft-info" id="pr-msz-info">Passe o mouse sobre os dias para mais informações</p>
             <div class="legend">
                 <div class="legend-item">
                     <div class="color-box maintenance-color"></div>
                     <span>Período de Manutenção</span>
+                </div>
+                <div class="legend-item">
+                    <span></span>
                 </div>
             </div>
             <div class="calendar-container">
                 <div class="months-grid" id="pr-msz-calendar">
-                    <!-- JavaScript vai preencher isso-->
+                    <!-- Local onde o JavaScript irá inserir o calendário gerado -->
                 </div>
             </div>
         </div>
         
+        <!-- Conteúdo da aba PP-EMO -->
         <div id="pp-emo" class="tab-content">
-            <!-- Conteúdo da terceira aba (oculta por padrão) -->
             <h2 class="year-title">PP-EMO - Calendário 2025</h2>
+            <p class="aircraft-info" id="pp-emo-info">Passe o mouse sobre os dias para mais informações</p>
             <div class="legend">
                 <div class="legend-item">
                     <div class="color-box maintenance-color"></div>
                     <span>Período de Manutenção</span>
+                </div>
+                <div class="legend-item">
+                    <span></span>
                 </div>
             </div>
             <div class="calendar-container">
                 <div class="months-grid" id="pp-emo-calendar">
-                    <!-- JavaScript vai preencher isso -->
+                    <!-- Local onde o JavaScript irá inserir o calendário gerado -->
                 </div>
             </div>
         </div>
         
+        <!-- Conteúdo da aba PS-ECE -->
         <div id="ps-ece" class="tab-content">
-            <!-- Conteúdo da quarta aba (oculta por padrão) -->
             <h2 class="year-title">PS-ECE - Calendário 2025</h2>
+            <p class="aircraft-info" id="ps-ece-info">Passe o mouse sobre os dias para mais informações</p>
             <div class="legend">
                 <div class="legend-item">
                     <div class="color-box maintenance-color"></div>
                     <span>Período de Manutenção</span>
                 </div>
+                <div class="legend-item">
+                    <span></span>
+                </div>
             </div>
             <div class="calendar-container">
                 <div class="months-grid" id="ps-ece-calendar">
-                    <!-- JavaScript vai preencher isso -->
+                    <!-- Local onde o JavaScript irá inserir o calendário gerado -->
                 </div>
             </div>
         </div>
         
+        <!-- Rodapé da página -->
         <footer>
-            <!-- Rodapé da página -->
             <p>Desenvolvido para o Controle de Manutenção de Aeronaves | Atualizado em: <span id="current-date"></span></p>
-            <!-- Texto do rodapé com um span onde a data atual será inserida via JavaScript -->
+            <!-- A data atual será inserida via JavaScript -->
         </footer>
     </div>
 
+    <!-- Inclusão do arquivo JavaScript -->
     <script src="script.js"></script>
-    <!-- Link para o arquivo JavaScript que será executado após o carregamento do HTML -->
 </body>
 </html>

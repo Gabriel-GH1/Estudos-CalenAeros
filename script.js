@@ -1,200 +1,261 @@
-// Função para alternar entre abas
-function openTab(tabId) {
-    // Ocultar todo o conteúdo da guia
-    const tabContents = document.getElementsByClassName('tab-content');
-    for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove('active'); // Remove a classe active de todas as abas
-    }
-    
-    // Remove a classe active de todos os botões da guia
-    const tabButtons = document.getElementsByClassName('tab-button');
-    for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].classList.remove('active'); // Remove a classe active de todos os botões
-    }
-    
-    // Mostrar o conteúdo da aba selecionada e definir o botão como ativo
-    document.getElementById(tabId).classList.add('active'); // Adiciona a classe active à aba selecionada
-    event.currentTarget.classList.add('active'); // Adiciona a classe active ao botão clicado
-    
-    // Atualizar informações da aeronave ao mudar de aba
-    updateAircraftInfo(tabId); // Chama a função para atualizar as informações
-}
-
-// Definir data atual no footer
-document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR'); 
-// Obtém a data atual e formata no padrão brasileiro (dd/mm/aaaa)
-
 // Dados dos períodos de manutenção de cada aeronave
+// Objeto que armazena todas as informações de manutenção das aeronaves
 const aircraftData = {
-    'pp-fcf': { // Identificador único para a aeronave PP-FCF
-        prefix: 'PP-FCF', // Prefixo da aeronave
-        entrada: new Date('2025-07-21'), // Data de entrada em manutenção
-        saida: new Date('2025-09-13'), // Data de saída da manutenção
-        info: "Manutenção programada para revisão geral" // Informações adicionais
+    'pp-fcf': {  // Chave única para identificar a aeronave
+        prefix: 'PP-FCF',  // Prefixo de identificação da aeronave
+        entrada: new Date('2025-07-21'),  // Data de entrada para manutenção
+        saida: new Date('2025-09-17'), // ATUALIZADO: de 13/09 para 17/09 - Data de saída atualizada
+        info: "Manutenção programada para revisão geral - Concluída com atraso"  // Descrição detalhada
     },
-    'pr-msz': { // Identificador único para a aeronave PR-MSZ
+    // Estrutura repetida para as outras 6 aeronaves
+    'pr-msz': {
         prefix: 'PR-MSZ',
         entrada: new Date('2025-08-08'),
         saida: new Date('2025-08-30'),
         info: "Manutenção de sistemas hidráulicos"
     },
-    'pp-emo': { // Identificador único para a aeronave PP-EMO
+    'pp-emo': {
         prefix: 'PP-EMO',
         entrada: new Date('2025-08-15'),
         saida: new Date('2025-08-30'),
         info: "Substituição de componentes da asa direita"
     },
-    'ps-ece': { // Identificador único para a aeronave PS-ECE
+    'ps-ece': {
         prefix: 'PS-ECE',
         entrada: new Date('2025-08-15'),
         saida: new Date('2025-08-28'),
         info: "Atualização de sistemas de navegação"
+    },
+     'pr-rex': {
+        prefix: 'PR-REX',
+        entrada: new Date('2025-04-10'),  // Data de entrada
+        saida: new Date('2025-08-15'),    // Data de saída
+        info: "Manutenção programada para revisão de motores"
+    },
+    'pr-arb': {
+        prefix: 'PR-ARB',
+        entrada: new Date('2025-02-08'),  // Data de entrada
+        saida: new Date('2025-10-08'),    // Data de saída
+          info: "Substituição de sistema de combustível - Nova data de saída"
+    },
+     'pr-day': {  
+        prefix: 'PR-DAY',
+        entrada: new Date('2025-09-19'),
+        saida: new Date('2025-09-31'),  // Nota: Setembro tem apenas 30 dias
+        info: "Manutenção CVA"
     }
 };
 
-// Atualizar informações da aeronave
-function updateAircraftInfo(aircraftId) {
-    const data = aircraftData[aircraftId]; // Obtém os dados da aeronave específica
-    const infoElement = document.getElementById(`${aircraftId}-info`); // Obtém o elemento onde as informações serão exibidas
+// Função para alternar entre abas - controla a navegação entre aeronaves
+function openTab(tabId) {
+    // Ocultar todo o conteúdo da guia - remove classe active de todas as abas
+    const tabContents = document.getElementsByClassName('tab-content');
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove('active');
+    }
     
-    if (data && infoElement) { // Verifica se os dados e o elemento existem
-        const entradaFormatada = data.entrada.toLocaleDateString('pt-BR'); // Formata a data de entrada
-        const saidaFormatada = data.saida.toLocaleDateString('pt-BR'); // Formata a data de saída
+    // Remove active class de todos os botões da guia
+    const tabButtons = document.getElementsByClassName('tab-button');
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove('active');
+    }
+    
+    // Mostrar o conteúdo da aba selecionada e definir o botão como ativo
+    document.getElementById(tabId).classList.add('active');  // Mostra conteúdo
+    event.currentTarget.classList.add('active');  // Destaca botão clicado
+    
+    // Atualizar informações da aeronave ao mudar de aba
+    updateAircraftInfo(tabId);
+}
+
+// Definir data atual no footer - atualiza automaticamente
+document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR');
+
+// Atualizar informações da aeronave - exibe dados no topo de cada aba
+function updateAircraftInfo(aircraftId) {
+    const data = aircraftData[aircraftId];  // Busca dados da aeronave específica
+    const infoElement = document.getElementById(`${aircraftId}-info`);  // Elemento onde info será exibida
+    
+    if (data && infoElement) {
+        // Formata datas para o padrão brasileiro
+        const entradaFormatada = data.entrada.toLocaleDateString('pt-BR');
+        const saidaFormatada = data.saida.toLocaleDateString('pt-BR');
         
-        // Insere as informações formatadas no elemento HTML
+        // Monta HTML com informações formatadas
         infoElement.innerHTML = `
             <strong>Entrada:</strong> ${entradaFormatada} | 
             <strong>Saída:</strong> ${saidaFormatada} | 
             <strong>Duração:</strong> ${getDiasUteisFixos(aircraftId)} dias úteis
-            <br><em>${data.info}</em>
+            <br><em>${data.info}</em>  <!-- Descrição em itálico -->
         `;
     }
 }
 
-// Calcular diferença de dias úteis entre duas datas
+// Calcular diferença de dias úteis entre duas datas (função não utilizada atualmente)
 function calculateDaysDifference(startDate, endDate) {
-    let count = 0; // Inicializa o contador de dias úteis
-    const curDate = new Date(startDate.getTime()); // Cria uma cópia da data de início
+    let count = 0;  // Contador de dias úteis
+    const curDate = new Date(startDate.getTime());  // Cria cópia da data inicial
     
-    // Itera por cada dia entre as datas
+    // Loop por cada dia entre as datas
     while (curDate <= endDate) {
-        const dayOfWeek = curDate.getDay(); // Obtém o dia da semana (0=domingo, 6=sábado)
-        if (dayOfWeek !== 0 && dayOfWeek !== 6) count++; // Incrementa se for dia útil
-        curDate.setDate(curDate.getDate() + 1); // Avança para o próximo dia
+        const dayOfWeek = curDate.getDay();  // 0=Domingo, 6=Sábado
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) count++;  // Incrementa se for dia útil
+        curDate.setDate(curDate.getDate() + 1);  // Avança para próximo dia
     }
     
-    return count; // Retorna o total de dias úteis
+    return count;
 }
 
-// Adicionar eventos de mouse para as abas
+// Adicionar eventos de mouse para as abas - melhora interatividade
 document.querySelectorAll('.tab-button').forEach(button => {
-    const aircraftId = button.getAttribute('data-aircraft'); // Obtém o ID da aeronave do atributo data
-    const data = aircraftData[aircraftId]; // Obtém os dados da aeronave
+    const aircraftId = button.getAttribute('data-aircraft');  // Obtém ID da aeronave
+    const data = aircraftData[aircraftId];  // Busca dados correspondentes
     
     if (data) {
         // Adicionar tooltip com informações da aeronave
-        const tooltip = button.querySelector('.tab-tooltip'); // Seleciona o elemento do tooltip
-        const entradaFormatada = data.entrada.toLocaleDateString('pt-BR'); // Formata a data de entrada
-        const saidaFormatada = data.saida.toLocaleDateString('pt-BR'); // Formata a data de saída
+        const tooltip = button.querySelector('.tab-tooltip');
+        const entradaFormatada = data.entrada.toLocaleDateString('pt-BR');
+        const saidaFormatada = data.saida.toLocaleDateString('pt-BR');
         
-        tooltip.textContent = `Entrada: ${entradaFormatada} | Saída: ${saidaFormatada}`; // Define o texto do tooltip
+        tooltip.textContent = `Entrada: ${entradaFormatada} | Saída: ${saidaFormatada}`;
         
         // Atualizar informações ao passar o mouse
         button.addEventListener('mouseenter', () => {
-            updateAircraftInfo(aircraftId); // Chama a função para atualizar as informações
+            updateAircraftInfo(aircraftId);
         });
     }
 });
 
-// Gerar calendário para cada aeronave
+// Gerar calendário para cada aeronave - executa ao carregar a página
 Object.keys(aircraftData).forEach(aircraft => {
-    generateCalendar(aircraft, aircraftData[aircraft]); // Chama a função para gerar o calendário
+    generateCalendar(aircraft, aircraftData[aircraft]);
 });
 
-// Função para gerar o calendário
+// Função principal que gera o calendário visual
 function generateCalendar(aircraftId, data) {
-    const calendarContainer = document.getElementById(`${aircraftId}-calendar`); // Obtém o container do calendário
-    const year = data.entrada.getFullYear(); // Obtém o ano da data de entrada
-    const today = new Date(); // Obtém a data atual
-    today.setHours(0, 0, 0, 0); // Define a hora para meia-noite para comparação precisa
+    const calendarContainer = document.getElementById(`${aircraftId}-calendar`);
+    const year = data.entrada.getFullYear();  // Ano base para o calendário (2025)
+    const today = new Date();  // Data atual para referência
+    today.setHours(0, 0, 0, 0);  // Zera horas para comparação precisa
     
-    // Gera os 12 meses do ano
+    // Defina a data original de saída planejada (12/09) - APENAS PARA PP-FCF
+    const saidaPlanejada = aircraftId === 'pp-fcf' ? new Date('2025-09-12') : null;
+    // NOVO: Defina a data original de saída planejada (19/09) - APENAS PARA PR-ARB
+    const saidaPlanejadaPRARB = aircraftId === 'pr-arb' ? new Date('2025-09-19') : null;
+    
+    // Loop para criar os 12 meses do ano
     for (let month = 0; month < 12; month++) {
-        const monthElement = document.createElement('div'); // Cria um elemento para o mês
-        monthElement.className = 'month'; // Adiciona a classe month
+        const monthElement = document.createElement('div');
+        monthElement.className = 'month';  // Container de cada mês
         
-        const monthName = document.createElement('div'); // Cria um elemento para o nome do mês
-        monthName.className = 'month-name'; // Adiciona a classe month-name
-        monthName.textContent = new Date(year, month, 1).toLocaleDateString('pt-BR', { month: 'long' }); // Define o nome do mês
-        monthElement.appendChild(monthName); // Adiciona o nome do mês ao elemento do mês
+        // Cria elemento com nome do mês
+        const monthName = document.createElement('div');
+        monthName.className = 'month-name';
+        monthName.textContent = new Date(year, month, 1).toLocaleDateString('pt-BR', { month: 'long' });
+        monthElement.appendChild(monthName);
         
-        const weekdays = document.createElement('div'); // Cria um elemento para os dias da semana
-        weekdays.className = 'weekdays'; // Adiciona a classe weekdays
-        // Adiciona os dias da semana (Dom, Seg, Ter, etc.)
+        // Cria cabeçalho com dias da semana
+        const weekdays = document.createElement('div');
+        weekdays.className = 'weekdays';
         ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'].forEach(day => {
-            const dayElement = document.createElement('div'); // Cria um elemento para cada dia da semana
-            dayElement.textContent = day; // Define o texto do dia
-            weekdays.appendChild(dayElement); // Adiciona ao container de dias da semana
+            const dayElement = document.createElement('div');
+            dayElement.textContent = day;
+            weekdays.appendChild(dayElement);
         });
-        monthElement.appendChild(weekdays); // Adiciona os dias da semana ao elemento do mês
+        monthElement.appendChild(weekdays);
         
-        const daysContainer = document.createElement('div'); // Cria um container para os dias do mês
-        daysContainer.className = 'days'; // Adiciona a classe days
+        // Container para os dias do mês
+        const daysContainer = document.createElement('div');
+        daysContainer.className = 'days';
         
-        const firstDay = new Date(year, month, 1); // Primeiro dia do mês
-        const lastDay = new Date(year, month + 1, 0); // Último dia do mês
+        // Calcula primeiro e último dia do mês
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
         
-        // Dias vazios antes do primeiro dia do mês
+        // Dias vazios antes do primeiro dia do mês (para alinhamento)
         for (let i = 0; i < firstDay.getDay(); i++) {
-            const emptyDay = document.createElement('div'); // Cria um elemento vazio
-            emptyDay.className = 'day empty'; // Adiciona as classes day e empty
-            daysContainer.appendChild(emptyDay); // Adiciona ao container de dias
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'day empty';
+            daysContainer.appendChild(emptyDay);
+        }
+       
+       // Loop para criar cada dia do mês
+       for (let day = 1; day <= lastDay.getDate(); day++) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'day';  // Elemento de dia individual
+    dayElement.textContent = day;  // Número do dia
+    
+    const currentDate = new Date(year, month, day);  // Data atual do loop
+    const dayOfWeek = currentDate.getDay(); // 0 = Domingo, 6 = Sábado
+    
+    // Verifica se este dia está dentro do período de manutenção E é um dia útil
+    if (currentDate >= data.entrada && currentDate <= data.saida && dayOfWeek !== 0 && dayOfWeek !== 6) {
+        dayElement.classList.add('maintenance');  // Adiciona classe de estilo
+        
+        // CRIAR TOOLTIP PARA DIAS DE MANUTENÇÃO
+        const tooltip = document.createElement('div');
+        tooltip.className = 'day-tooltip';
+        
+        // DATAS ESPECÍFICAS DE SAÍDA PARA CADA AERONAVE
+        const saidaDates = {
+            'pp-fcf': '16/09',
+            'pr-msz': '29/08', 
+            'pp-emo': '29/08',
+            'ps-ece': '27/08',
+            'pr-rex': '14/08',
+            'pr-arb': '07/10',
+            'pr-day': '30/09'
+        };
+        
+        // Formata a data atual para comparar (dd/mm)
+        const currentDay = String(day).padStart(2, '0');
+        const currentMonth = String(month + 1).padStart(2, '0');
+        const currentDateFormatted = `${currentDay}/${currentMonth}`;
+        
+        // Verifica se é o dia de saída específico
+        if (saidaDates[aircraftId] === currentDateFormatted) {
+            tooltip.textContent = `${data.prefix} - Manutenção concluída`;
+        } else {
+            tooltip.textContent = `${data.prefix} - Em manutenção`;
         }
         
-        // Dias do mês
-        for (let day = 1; day <= lastDay.getDate(); day++) {
-            const dayElement = document.createElement('div'); // Cria um elemento para o dia
-            dayElement.className = 'day'; // Adiciona a classe day
-            dayElement.textContent = day; // Define o número do dia
-            
-            const currentDate = new Date(year, month, day); // Cria uma data para o dia atual
-            const dayOfWeek = currentDate.getDay(); // 0 = Domingo, 6 = Sábado
-            
-            // Verificar se é hoje E NÃO é 15 de setembro (mês 8, pois janeiro = 0)
-            if (currentDate.getTime() === today.getTime() && 
-            !(currentDate.getDate() === 15 && currentDate.getMonth() === 8)) {
-               dayElement.classList.add('today'); // Adiciona a classe today
-            }
-            
-            // Verifica se este dia está dentro do período de manutenção E é um dia útil
-            if (currentDate >= data.entrada && currentDate <= data.saida && dayOfWeek !== 0 && dayOfWeek !== 6) {
-                dayElement.classList.add('maintenance'); // Adiciona a classe maintenance
-                
-                // Adicionar tooltip para dias de manutenção
-                const tooltip = document.createElement('div'); // Cria um elemento para o tooltip
-                tooltip.className = 'day-tooltip'; // Adiciona a classe day-tooltip
-                tooltip.textContent = `${data.prefix} em manutenção`; // Define o texto do tooltip
-                dayElement.appendChild(tooltip); // Adiciona o tooltip ao dia
-            }
-            
-            daysContainer.appendChild(dayElement); // Adiciona o dia ao container de dias
-        }
+        dayElement.appendChild(tooltip);  // Adiciona tooltip ao dia
         
-        monthElement.appendChild(daysContainer); // Adiciona os dias ao elemento do mês
-        calendarContainer.appendChild(monthElement); // Adiciona o mês ao container do calendário
+        // VERIFICAÇÃO ESPECIAL PARA PP-FCF: Dias de atraso
+        if (aircraftId === 'pp-fcf' && saidaPlanejada && currentDate > saidaPlanejada) {
+            dayElement.classList.add('delay');  // Adiciona classe de atraso
+            
+            // Atualiza o tooltip para mostrar que é atraso
+            if (saidaDates[aircraftId] === currentDateFormatted) {
+                tooltip.textContent = `${data.prefix} - Manutenção concluída com atraso`;
+            } else {
+                tooltip.textContent = `${data.prefix} - Conclusão com atraso`;
+            }
+        }
+       
+    }
+    
+    daysContainer.appendChild(dayElement);  // Adiciona dia ao container
+}
+       
+        monthElement.appendChild(daysContainer);  // Adiciona dias ao mês
+        calendarContainer.appendChild(monthElement);  // Adiciona mês ao calendário
     }
     
     // Atualizar informações da aeronave ativa inicialmente
     if (document.getElementById(aircraftId).classList.contains('active')) {
-        updateAircraftInfo(aircraftId); // Chama a função para atualizar as informações
+        updateAircraftInfo(aircraftId);
     }
 }
 
-// Função para retornar os dias úteis fixos que você quer
+// Função que retorna dias úteis fixos para cada aeronave (valores pré-calculados)
 function getDiasUteisFixos(aircraftId) {
-    if (aircraftId === 'pp-fcf') return 40; // Dias úteis para PP-FCF
-    if (aircraftId === 'pr-msz') return 16;  // Dias úteis para PR-MSZ
-    if (aircraftId === 'pp-emo') return 11;  // Dias úteis para PP-EMO
-    if (aircraftId === 'ps-ece') return 9;   // Dias úteis para PS-ECE
-    return 0; // Retorno padrão
+    if (aircraftId === 'pp-fcf') return 42;
+    if (aircraftId === 'pr-msz') return 16;
+    if (aircraftId === 'pp-emo') return 11;
+    if (aircraftId === 'ps-ece') return 9;
+    if (aircraftId === 'pr-rex') return 88;
+    if (aircraftId === 'pr-arb') return 166;
+    if (aircraftId === 'pr-day') return 9;  // Valor para PR-DAY
+    return 0;  // Valor padrão caso não encontre
 }

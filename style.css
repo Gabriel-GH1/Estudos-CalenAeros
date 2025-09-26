@@ -1,12 +1,12 @@
-/* Reset básico para todos os elementos */
+/* Reset básico para remover margens e paddings padrão e usar border-box */
 * {
-    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura */
     margin: 0; /* Remove margens padrão */
-    padding: 0; /* Remove preenchimentos padrão */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Define a fonte padrão */
+    padding: 0; /* Remove paddings padrão */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Define fonte padrão */
 }
 
-/* Estilos para o corpo do documento */
+/* Estilos para o corpo da página */
 body {
     background-color: #f5f5f5; /* Cor de fundo cinza claro */
     padding: 20px; /* Espaçamento interno */
@@ -20,7 +20,7 @@ body {
     background: white; /* Fundo branco */
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    overflow: hidden; /* Esconde conteúdo que ultrapassa os limites */
+    overflow: hidden; /* Esconde conteúdo que ultrapassa as bordas */
 }
 
 /* Estilos para o cabeçalho */
@@ -28,100 +28,100 @@ header {
     background: #005288; /* Azul escuro */
     color: white; /* Texto branco */
     padding: 20px; /* Espaçamento interno */
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
 }
 
 /* Estilo para o título principal */
 h1 {
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    margin-bottom: 10px; /* Espaçamento abaixo */
 }
 
 /* Container das abas */
 .tabs {
-    display: flex; /* Layout flexível para as abas */
+    display: flex; /* Layout flexível para alinhar as abas horizontalmente */
     background: #e0e0e0; /* Cor de fundo cinza */
     border-bottom: 1px solid #ccc; /* Borda inferior */
 }
 
-/* Estilos para os botões das abas */
+/* Estilo para os botões das abas */
 .tab-button {
     position: relative; /* Permite posicionamento absoluto de elementos filhos */
     padding: 12px 20px; /* Espaçamento interno */
     background: #e0e0e0; /* Cor de fundo */
     border: none; /* Remove borda padrão */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    cursor: pointer; /* Cursor de pointer ao passar o mouse */
     font-weight: 500; /* Peso da fonte */
     transition: background 0.3s; /* Transição suave para mudanças de cor */
 }
 
-/* Efeito ao passar o mouse sobre os botões */
+/* Efeito ao passar o mouse sobre as abas */
 .tab-button:hover {
-    background: #d0d0d0; /* Cor de fundo mais clara */
+    background: #d0d0d0; /* Cor mais escura no hover */
 }
 
-/* Estilo para o botão ativo */
+/* Estilo para a aba ativa */
 .tab-button.active {
     background: white; /* Fundo branco */
     border-bottom: 3px solid #005288; /* Borda inferior azul */
     font-weight: bold; /* Texto em negrito */
 }
 
-/* Estilos para o conteúdo das abas */
+/* Conteúdo das abas (inicialmente oculto) */
 .tab-content {
     display: none; /* Oculta por padrão */
     padding: 20px; /* Espaçamento interno */
 }
 
-/* Exibe a aba ativa */
+/* Mostra o conteúdo da aba ativa */
 .tab-content.active {
     display: block; /* Exibe como bloco */
 }
 
-/* Container do calendário com rolagem horizontal */
+/* Container do calendário com rolagem horizontal se necessário */
 .calendar-container {
-    overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    overflow-x: auto; /* Habilita rolagem horizontal se necessário */
 }
 
-/* Título do ano no calendário */
+/* Título do ano e aeronave */
 .year-title {
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
     margin: 15px 0; /* Margem superior e inferior */
-    color: #005288; /* Cor azul escuro */
+    color: #005288; /* Cor azul */
 }
 
 /* Informações da aeronave */
 .aircraft-info {
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
     margin-bottom: 15px; /* Margem inferior */
     font-style: italic; /* Texto em itálico */
     color: #666; /* Cor cinza */
 }
 
-/* Grade de meses do calendário */
+/* Grid para os meses (3 colunas por padrão) */
 .months-grid {
-    display: grid; /* Layout em grade */
+    display: grid; /* Layout em grid */
     grid-template-columns: repeat(3, 1fr); /* 3 colunas de tamanho igual */
     gap: 20px; /* Espaço entre os elementos */
 }
 
-/* Media query para tablets */
+/* Media query para tablets (até 900px) */
 @media (max-width: 900px) {
     .months-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
     }
 }
 
-/* Media query para celulares */
+/* Media query para celulares (até 600px) */
 @media (max-width: 600px) {
     .months-grid {
         grid-template-columns: 1fr; /* 1 coluna em celulares */
     }
 }
 
-/* Estilos para cada mês no calendário */
+/* Estilo para cada mês */
 .month {
     background: white; /* Fundo branco */
-    border: 1px solid #ddd; /* Borda cinza clara */
+    border: 1px solid #ddd; /* Borda cinza */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 10px; /* Espaçamento interno */
     transition: transform 0.2s; /* Transição suave para transformações */
@@ -135,62 +135,62 @@ h1 {
 
 /* Nome do mês */
 .month-name {
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
     font-weight: bold; /* Texto em negrito */
     margin-bottom: 10px; /* Margem inferior */
     padding-bottom: 5px; /* Espaçamento inferior */
     border-bottom: 1px solid #eeeeee; /* Borda inferior sutil */
-    color: #005288; /* Cor azul escuro */
+    color: #005288; /* Cor azul */
 }
 
 /* Container dos dias da semana */
 .weekdays {
-    display: grid; /* Layout em grade */
-    grid-template-columns: repeat(7, 1fr); /* 7 colunas (dias da semana) */
-    text-align: center; /* Centraliza o texto */
+    display: grid; /* Layout em grid */
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas (um para cada dia) */
+    text-align: center; /* Centraliza texto */
     font-weight: bold; /* Texto em negrito */
-    font-size: 12px; /* Tamanho da fonte */
+    font-size: 12px; /* Tamanho de fonte menor */
     margin-bottom: 5px; /* Margem inferior */
 }
 
 /* Container dos dias do mês */
 .days {
-    display: grid; /* Layout em grade */
-    grid-template-columns: repeat(7, 1fr); /* 7 colunas (dias da semana) */
-    gap: 2px; /* Espaço entre os dias */
+    display: grid; /* Layout em grid */
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas (uma para cada dia da semana) */
+    gap: 2px; /* Pequeno espaço entre os dias */
 }
 
-/* Estilos para cada dia */
+/* Estilo para cada dia */
 .day {
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
     padding: 5px; /* Espaçamento interno */
-    font-size: 12px; /* Tamanho da fonte */
-    border-radius: 3px; /* Bordas arredondadas */
+    font-size: 12px; /* Tamanho de fonte menor */
+    border-radius: 3px; /* Bordas ligeiramente arredondadas */
     transition: background-color 0.2s; /* Transição suave para mudanças de cor */
     position: relative; /* Permite posicionamento absoluto de elementos filhos */
 }
 
-/* Dias vazios (antes do primeiro dia do mês) */
+/* Dias vazios (para alinhamento) */
 .day.empty {
     background: transparent; /* Fundo transparente */
     border: none; /* Sem borda */
 }
 
-/* Dias de manutenção */
+/* Dias em período de manutenção */
 .day.maintenance {
-    background-color: #ffeb3b; /* Amarelo para dias de manutenção */
+    background-color: #ffeb3b; /* Amarelo */
     font-weight: bold; /* Texto em negrito */
 }
 
-/* Dia atual */
+/* Dia atual (não implementado no JS) */
 .day.today {
-    border: 2px solid #005288; /* Borda azul para o dia atual */
+    border: 2px solid #005288; /* Borda azul */
 }
 
 /* Efeito ao passar o mouse sobre os dias */
 .day:hover {
-    background-color: #e0e0e0; /* Cor de fundo cinza */
-    cursor: pointer; /* Cursor de ponteiro */
+    background-color: #e0e0e0; /* Cor cinza */
+    cursor: pointer; /* Cursor de pointer */
 }
 
 /* Efeito ao passar o mouse sobre dias de manutenção */
@@ -208,7 +208,7 @@ h1 {
     color: white; /* Texto branco */
     padding: 5px 8px; /* Espaçamento interno */
     border-radius: 4px; /* Bordas arredondadas */
-    font-size: 12px; /* Tamanho da fonte */
+    font-size: 12px; /* Tamanho de fonte menor */
     white-space: nowrap; /* Impede quebra de linha */
     z-index: 100; /* Garante que fique acima de outros elementos */
     opacity: 0; /* Inicialmente invisível */
@@ -216,7 +216,7 @@ h1 {
     transition: opacity 0.3s; /* Transição suave para opacidade */
 }
 
-/* Exibe o tooltip ao passar o mouse sobre o dia */
+/* Mostra o tooltip ao passar o mouse sobre o dia */
 .day:hover .day-tooltip {
     opacity: 1; /* Torna visível */
     visibility: visible; /* Torna visível */
@@ -228,16 +228,16 @@ h1 {
     justify-content: center; /* Centraliza horizontalmente */
     margin-top: 20px; /* Margem superior */
     padding: 10px; /* Espaçamento interno */
-    background: #f9f9f9; /* Cor de fundo cinza muito claro */
+    background: #f9f9f9; /* Fundo cinza muito claro */
     border-radius: 5px; /* Bordas arredondadas */
-    flex-wrap: wrap; /* Permite quebra de linha */
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
 }
 
 /* Cada item da legenda */
 .legend-item {
     display: flex; /* Layout flexível */
     align-items: center; /* Alinha verticalmente ao centro */
-    margin: 5px 15px; /* Margem entre os itens */
+    margin: 5px 15px; /* Margem entre itens */
 }
 
 /* Caixa de cor na legenda */
@@ -253,24 +253,24 @@ h1 {
     background-color: #ffeb3b; /* Amarelo */
 }
 
-/* Cor para o dia atual na legenda */
+/* Cor para dia atual na legenda (não implementado) */
 .today-color {
     background-color: #ffffff; /* Branco */
     border: 2px solid #005288; /* Borda azul */
 }
 
-/* Rodapé da página */
+/* Rodapé */
 footer {
-    text-align: center; /* Centraliza o texto */
+    text-align: center; /* Centraliza texto */
     padding: 20px; /* Espaçamento interno */
     margin-top: 20px; /* Margem superior */
-    color: #666; /* Cor do texto cinza */
-    font-size: 14px; /* Tamanho da fonte */
+    color: #666; /* Cor cinza */
+    font-size: 14px; /* Tamanho de fonte menor */
 }
 
 /* Tooltip para as abas */
 .tab-tooltip {
-    position: absolute; /* Posicionamento absoluto */
+    position: absolute; /* Posicionamento absoluto em relação ao botão */
     bottom: 100%; /* Posiciona acima do botão */
     left: 50%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
@@ -278,17 +278,93 @@ footer {
     color: white; /* Texto branco */
     padding: 8px 12px; /* Espaçamento interno */
     border-radius: 4px; /* Bordas arredondadas */
-    font-size: 12px; /* Tamanho da fonte */
+    font-size: 12px; /* Tamanho de fonte menor */
     white-space: nowrap; /* Impede quebra de linha */
     z-index: 100; /* Garante que fique acima de outros elementos */
     opacity: 0; /* Inicialmente invisível */
     visibility: hidden; /* Inicialmente invisível */
     transition: opacity 0.3s; /* Transição suave para opacidade */
-    pointer-events: none; /* Impede que interfira com eventos de mouse */
+    pointer-events: none; /* Impede que o tooltip interfira com eventos do mouse */
 }
 
-/* Exibe o tooltip ao passar o mouse sobre a aba */
+/* Mostra o tooltip ao passar o mouse sobre a aba */
 .tab-button:hover .tab-tooltip {
     opacity: 1; /* Torna visível */
     visibility: visible; /* Torna visível */
 }
+
+/* NOVO CÓDIGO PARA DIAS DE ATRASO - Estilo para dias de atraso */
+.day.delay {
+    background-color: #ff8a80; /* Vermelho claro */
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Efeito ao passar o mouse sobre dias de atraso */
+.day.delay:hover {
+    background-color: #ff5252; /* Vermelho mais escuro no hover */
+}
+/* NOVA COR PARA A LEGENDA DE ATRASO */
+.delay-color {
+    background-color: #ff8a80; /* Vermelho claro - mesma cor dos dias de atraso */
+}
+/* MELHORIAS NO TOOLTIP DOS DIAS */
+.day-tooltip {
+    position: absolute;  /* Posicionamento absoluto em relação ao elemento pai */
+    bottom: 100%; /* Posiciona acima do dia */
+    left: 50%;  /* Centraliza horizontalmente */
+    transform: translateX(-50%);  /* Ajuste fino para centralização perfeita */
+    background-color: #333;  /* Cor de fundo escura */
+    color: white;  /* Cor do texto */
+    padding: 8px 12px;  /* Espaçamento interno */
+    border-radius: 6px;  /* Cantos arredondados */
+    font-size: 12px;  /* Tamanho da fonte menor */
+    white-space: nowrap;  /* Impede quebra de linha */
+    z-index: 1000;  /* Garante que fique acima de outros elementos */
+    opacity: 0;  /* Inicialmente invisível */
+    visibility: hidden;  /* Inicialmente escondido */
+    transition: all 0.3s ease;  /* Transição suave para animação */
+    pointer-events: none;  /* Impede interferência com outros eventos */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);  /* Sombra para destaque */
+    font-weight: normal;  /* Peso da fonte normal */
+    text-align: center;  /* Texto centralizado */
+    min-width: 180px;  /* Largura mínima para consistência */
+}
+
+/* Seta do tooltip - elemento decorativo */
+.day-tooltip::after {
+    content: '';  /* Conteúdo vazio - elemento puramente visual */
+    position: absolute;  /* Posicionamento absoluto */
+    top: 100%;  /* Posiciona abaixo do tooltip */
+    left: 50%;  /* Centraliza horizontalmente */
+    transform: translateX(-50%);  /* Ajuste de centralização */
+    border-width: 5px;  /* Tamanho da seta */
+    border-style: solid;  /* Estilo da borda */
+    border-color: #333 transparent transparent transparent;  /* Cores: preto em cima, transparente nas laterais */
+}
+
+/* Mostra o tooltip ao passar o mouse */
+.day:hover .day-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 120%; /* Levanta um pouco mais o tooltip */
+}
+
+/* Tooltip específico para dias de manutenção */
+.day.maintenance:hover .day-tooltip {
+    background-color: #005288; /* Azul da empresa */
+}
+
+.day.maintenance:hover .day-tooltip::after {
+    border-color: #005288 transparent transparent transparent;
+}
+
+/* Tooltip específico para dias de atraso */
+.day.delay:hover .day-tooltip {
+    background-color: #d32f2f; /* Vermelho para atraso */
+}
+
+.day.delay:hover .day-tooltip::after {
+    border-color: #d32f2f transparent transparent transparent;
+} 
+
+/* FIM DO NOVO CÓDIGO CSS */

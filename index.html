@@ -1,276 +1,49 @@
 <!DOCTYPE html>
-<!-- Declaração do tipo de documento HTML5 -->
+<!-- Declaração do tipo de documento - HTML5 -->
 <html lang="pt-BR">
   <!-- Elemento raiz do documento com idioma português brasileiro -->
   <head>
-    <!-- Seção de metadados e configurações da página -->
+    <!-- Seção de cabeçalho - metadados e informações da página -->
     <meta charset="UTF-8" />
-    <!-- Define codificação de caracteres como UTF-8 para suportar acentos -->
+    <!-- Define a codificação de caracteres como UTF-8 (suporta acentos) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Configura viewport para responsividade em dispositivos móveis -->
+    <!-- Configura a viewport para responsividade em dispositivos móveis -->
     <title>Calendário de Manutenção de Aeronaves</title>
     <!-- Título da página que aparece na aba do navegador -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Link para arquivo de estilos CSS externo -->
+    <!-- Link para o arquivo de estilos CSS -->
   </head>
   <body>
-    <!-- Corpo principal da página - conteúdo visível -->
+    <!-- Corpo do documento - conteúdo visível da página -->
     <div class="container">
-      <!-- Container principal para organizar o layout -->
+      <!-- Container principal para agrupar todo o conteúdo -->
       <header>
         <!-- Cabeçalho da página -->
         <h1>Calendário de Manutenção de Aeronaves</h1>
         <!-- Título principal da aplicação -->
         <p>Controle de Entrada e Saída das Aeronaves</p>
-        <!-- Subtítulo descritivo -->
+        <!-- Descrição/subtítulo da aplicação -->
       </header>
-
-      <div class="tabs">
-        <!-- Container das abas de navegação entre aeronaves -->
-        <button class="tab-button active" onclick="openTab('pp-fcf')" data-aircraft="pp-fcf">
-          <!-- Botão da primeira aba (PP-FCF) - inicialmente ativa -->
-          PP-FCF
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip que aparece ao passar o mouse -->
-        </button>
-        <button class="tab-button" onclick="openTab('pr-msz')" data-aircraft="pr-msz">
-          <!-- Botão da segunda aba (PR-MSZ) -->
-          PR-MSZ
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-        <button class="tab-button" onclick="openTab('pp-emo')" data-aircraft="pp-emo">
-          <!-- Botão da terceira aba (PP-EMO) -->
-          PP-EMO
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-        <button class="tab-button" onclick="openTab('ps-ece')" data-aircraft="ps-ece">
-          <!-- Botão da quarta aba (PS-ECE) -->
-          PS-ECE
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-        <button class="tab-button" onclick="openTab('pr-rex')" data-aircraft="pr-rex">
-          <!-- Botão da quinta aba (PR-REX) -->
-          PR-REX
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-        <button class="tab-button" onclick="openTab('pr-arb')" data-aircraft="pr-arb">
-          <!-- Botão da sexta aba (PR-ARB) -->
-          PR-ARB
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-        <button class="tab-button" onclick="openTab('pr-day')" data-aircraft="pr-day">
-          <!-- Botão da sétima aba (PR-DAY) -->
-          PR-DAY
-          <div class="tab-tooltip">Clique para ver detalhes</div>
-          <!-- Tooltip informativo -->
-        </button>
-      </div>
-
-      <!-- Conteúdo da primeira aba (PP-FCF) - inicialmente visível -->
-      <div id="pp-fcf" class="tab-content active">
-        <!-- Container do conteúdo específico da aeronave PP-FCF -->
-        <h2 class="year-title">PP-FCF - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pp-fcf-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item">
-            <!-- Item da legenda para dias de atraso -->
-            <div class="color-box delay-color"></div>
-            <!-- Caixa colorida representando dias de atraso -->
-            <span>Dias de Atraso</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pp-fcf-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da segunda aba (PR-MSZ) - inicialmente oculto -->
-      <div id="pr-msz" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PR-MSZ -->
-        <h2 class="year-title">PR-MSZ - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pr-msz-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item"><span></span></div>
-          <!-- Item vazio para manter alinhamento visual -->
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pr-msz-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da terceira aba (PP-EMO) - inicialmente oculto -->
-      <div id="pp-emo" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PP-EMO -->
-        <h2 class="year-title">PP-EMO - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pp-emo-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item"><span></span></div>
-          <!-- Item vazio para manter alinhamento visual -->
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pp-emo-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da quarta aba (PS-ECE) - inicialmente oculto -->
-      <div id="ps-ece" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PS-ECE -->
-        <h2 class="year-title">PS-ECE - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="ps-ece-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item"><span></span></div>
-          <!-- Item vazio para manter alinhamento visual -->
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="ps-ece-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da quinta aba (PR-REX) - inicialmente oculto -->
-      <div id="pr-rex" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PR-REX -->
-        <h2 class="year-title">PR-REX - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pr-rex-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item"><span></span></div>
-          <!-- Item vazio para manter alinhamento visual -->
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pr-rex-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da sexta aba (PR-ARB) - inicialmente oculto -->
-      <div id="pr-arb" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PR-ARB -->
-        <h2 class="year-title">PR-ARB - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pr-arb-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item">
-            <!-- Item da legenda para dias de atraso -->
-            <div class="color-box delay-color"></div>
-            <!-- Caixa colorida representando dias de atraso -->
-            <span>Dias de Atraso</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pr-arb-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
-      <!-- Conteúdo da sétima aba (PR-DAY) - inicialmente oculto -->
-      <div id="pr-day" class="tab-content">
-        <!-- Container do conteúdo específico da aeronave PR-DAY -->
-        <h2 class="year-title">PR-DAY - Calendário 2025</h2>
-        <!-- Título da aeronave e ano -->
-        <p class="aircraft-info" id="pr-day-info">Passe o mouse sobre os dias para mais informações</p>
-        <!-- Texto informativo que será atualizado via JavaScript -->
-        <div class="legend">
-          <!-- Container da legenda de cores -->
-          <div class="legend-item">
-            <!-- Item da legenda para período de manutenção -->
-            <div class="color-box maintenance-color"></div>
-            <!-- Caixa colorida representando período de manutenção -->
-            <span>Período de Manutenção</span>
-            <!-- Texto descritivo da legenda -->
-          </div>
-          <div class="legend-item"><span></span></div>
-          <!-- Item vazio para manter alinhamento visual -->
-        </div>
-        <div class="calendar-container">
-          <!-- Container principal do calendário -->
-          <div class="months-grid" id="pr-day-calendar"></div>
-          <!-- Grade onde os meses serão renderizados dinamicamente via JavaScript -->
-        </div>
-      </div>
-
+      <!-- Abas geradas dinamicamente a partir do JSON -->
+      <div class="tabs" id="tabs"></div>
+      <!-- Container onde as abas serão geradas dinamicamente pelo JavaScript -->
+      <!-- Conteúdos das abas gerados dinamicamente -->
+      <div id="contents"></div>
+      <!-- Container onde os conteúdos das abas serão gerados dinamicamente -->
       <footer>
         <!-- Rodapé da página -->
-        <p>Desenvolvido para o Controle de Manutenção de Aeronaves | Atualizado em: <span id="current-date"></span></p>
-        <!-- Texto do rodapé com data atual que será atualizada via JavaScript -->
+        <p>
+          <!-- Parágrafo do rodapé -->
+          Desenvolvido por Gabriel GH para o Controle de Manutenção de Aeronaves
+          <!-- Texto de créditos do desenvolvedor -->
+          | Atualizado em: <span id="current-date"></span>
+          <!-- Span onde a data atual será inserida dinamicamente pelo JavaScript -->
+        </p>
       </footer>
     </div>
-
+    <script src="data.js"></script>
+    <!-- Carrega o arquivo JavaScript com os dados das aeronaves -->
     <script src="script.js"></script>
-    <!-- Link para arquivo JavaScript externo - carregado no final para melhor performance -->
+    <!-- Carrega o arquivo JavaScript principal com a lógica da aplicação -->
   </body>
 </html>

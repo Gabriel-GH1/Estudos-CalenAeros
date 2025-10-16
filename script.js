@@ -110,7 +110,7 @@ function parseDateISO(dateString) {
 // Calcula a diferença de dias úteis entre duas datas
 function calculateDaysDifference(startDate, endDate) {
     // Verifica se ambas as datas são válidas
-    if (!startDate || !endDate) return 0;
+    if (!startDate || !endDate) return 0;//-------------->se alguma data for inválida, retorna 0
     // Inicializa o contador de dias úteis
     let count = 0;
     // Cria uma cópia da data de início para não modificar a original

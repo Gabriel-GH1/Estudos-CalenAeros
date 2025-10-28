@@ -205,13 +205,20 @@ const AIRCRAFT_DATA = {
     // ===========================================================================
     
     // Placeholders adicionadas para edição futura
-    "zz-placeholder1": { // Aeronave placeholder 1 (zz- indica que é temporária)
-        prefix: "ZZ-PL1", // Prefixo temporário
-        name: "Placeholder 1 (editar)", // Nome indicando que precisa ser editado
-        description: "Preencha nome, datas e manutenções posteriormente", // Instruções
-        year: 2025, // Ano padrão
-        // plannedExit opcional - não definida nesta placeholder
-        maintenances: [] // Array vazio - sem manutenções definidas ainda
+    "pr-cmq": {
+        prefix: "PR-CMQ",
+        name: "EMB-500 - Phenom 100",
+        description: "CVA + 48 MO",
+        year: 2025,
+        // plannedExit opcional
+        maintenances: [
+            {
+
+                entrada: "2025-10-27",
+                saida: "2025-11-14",
+                descricao: "CVA + 48 MO"
+            }
+        ]
     },
     
     "zz-placeholder2": { // Aeronave placeholder 2
